@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kana_kit/kana_kit.dart';
-import 'package:kuishurufjepang/data_letter.dart';
+import 'package:japaneseletterquiz/compare_provider.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -24,9 +24,6 @@ class _MyAppState extends State<MyApp> {
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-
-    // Start listening to changes.
-    romajiController.addListener(_convertToHiragana);
     super.dispose();
   }
 
@@ -38,53 +35,58 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text('Kuis Huruf Jepang'),
-        ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Text(
-                  randomItem,
-                  style: const TextStyle(fontSize: 100),
-                ),
-                TextField(
-                  controller: romajiController,
-                  textAlign: TextAlign.center,
-                  onChanged: (text) {
-                    _convertToHiragana();
-                  },
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  result,
-                  style: const TextStyle(fontSize: 100),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  result,
-                  style: const TextStyle(fontSize: 100),
-                ),
-              ],
+      home: ChangeNotifierProvider<CompareProvider>(
+        create: (_) => CompareProvider(),
+        // create: (BuildContext context) {
+        //   CompareProvider;
+        // },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            title: const Text('Kuis Huruf Jepang'),
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Consumer<CompareProvider>(
+                    builder: (context, value, _) => Text(
+                      value.randomLeterGenerate,
+                      style: const TextStyle(fontSize: 100),
+                    ),
+                  ),
+                  Consumer<CompareProvider>(
+                    builder: (context, value, _) => TextField(
+                      controller: romajiController,
+                      textAlign: TextAlign.center,
+                      onChanged: (text) {
+                        value.result = text;
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Consumer<CompareProvider>(
+                    builder: (context, value, _) => Text(
+                      value.result,
+                      style: const TextStyle(fontSize: 100),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    result,
+                    style: const TextStyle(fontSize: 100),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
-  }
-
-  _convertToHiragana() {
-    const kanaKit = KanaKit();
-    setState(() {
-      result = kanaKit.toHiragana(romajiController.text);
-    });
   }
 }

@@ -1,4 +1,4 @@
-# kuishurufjepang
+# japaneseletterquiz
 
 A new Flutter project.
 
