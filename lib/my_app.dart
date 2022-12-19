@@ -81,6 +81,22 @@ class _MyAppState extends State<MyApp> {
                     result,
                     style: const TextStyle(fontSize: 100),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Consumer<CompareProvider>(
+                    builder: (context, value, _) => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            value.setRandomLeter;
+                          },
+                          child: const Text('Try Again'),
+                        )
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

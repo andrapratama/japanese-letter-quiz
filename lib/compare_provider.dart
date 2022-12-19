@@ -25,4 +25,11 @@ class CompareProvider extends ChangeNotifier {
     _randomLetter = res;
     return res;
   }
+
+  String get setRandomLeter {
+    const kanaKit = KanaKit();
+    String res = kanaKit.toHiragana(randomItem);
+    notifyListeners();
+    return res;
+  }
 }
