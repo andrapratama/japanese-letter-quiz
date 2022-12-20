@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   Consumer<CompareProvider>(
                     builder: (context, value, _) => Text(
-                      value.randomLeterGenerate,
+                      value.randomNewLetter(),
                       style: const TextStyle(fontSize: 100),
                     ),
                   ),
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
                       controller: romajiController,
                       textAlign: TextAlign.center,
                       onChanged: (text) {
-                        value.result = text;
+                        // value.matchingLetter(text);
                       },
                     ),
                   ),
@@ -69,9 +69,9 @@ class _MyAppState extends State<MyApp> {
                     height: 20,
                   ),
                   Consumer<CompareProvider>(
-                    builder: (context, value, _) => Text(
-                      value.result,
-                      style: const TextStyle(fontSize: 100),
+                    builder: (context, value, _) => const Text(
+                      '',
+                      style: TextStyle(fontSize: 100),
                     ),
                   ),
                   const SizedBox(
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            value.setRandomLeter;
+                            // value.guessLetter = value.randomNewLetter();
                           },
                           child: const Text('Try Again'),
                         )
