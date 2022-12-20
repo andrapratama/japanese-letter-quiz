@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   Consumer<CompareProvider>(
                     builder: (context, value, _) => Text(
-                      value.randomNewLetter(),
+                      value.guessLetter,
                       style: const TextStyle(fontSize: 100),
                     ),
                   ),
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
                       controller: romajiController,
                       textAlign: TextAlign.center,
                       onChanged: (text) {
-                        // value.matchingLetter(text);
+                        value.inputUser = text;
                       },
                     ),
                   ),
@@ -69,30 +69,30 @@ class _MyAppState extends State<MyApp> {
                     height: 20,
                   ),
                   Consumer<CompareProvider>(
-                    builder: (context, value, _) => const Text(
-                      '',
-                      style: TextStyle(fontSize: 100),
+                    builder: (context, value, _) => Text(
+                      value.result,
+                      style: const TextStyle(fontSize: 100),
                     ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    result,
-                    style: const TextStyle(fontSize: 100),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  // Text(
+                  //   result,
+                  //   style: const TextStyle(fontSize: 100),
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
                   Consumer<CompareProvider>(
                     builder: (context, value, _) => Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // value.guessLetter = value.randomNewLetter();
+                            value.guessLetter = value.randomNewLetter();
                           },
-                          child: const Text('Try Again'),
+                          child: const Text('Random'),
                         )
                       ],
                     ),
