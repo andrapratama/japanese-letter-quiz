@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:japaneseletterquiz/compare_provider.dart';
+import 'package:japaneseletterquiz/quiz.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatefulWidget {
@@ -37,9 +38,6 @@ class _MyAppState extends State<MyApp> {
       ),
       home: ChangeNotifierProvider<CompareProvider>(
         create: (_) => CompareProvider(),
-        // create: (BuildContext context) {
-        //   CompareProvider;
-        // },
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
@@ -50,53 +48,26 @@ class _MyAppState extends State<MyApp> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Consumer<CompareProvider>(
-                    builder: (context, value, _) => Text(
-                      value.guessLetter,
-                      style: const TextStyle(fontSize: 100),
-                    ),
+                  const ListTile(
+                    title: Text('Hiragana'),
+                    subtitle: Text('Hiragana'),
+                    trailing: Text('Hiragana'),
                   ),
-                  Consumer<CompareProvider>(
-                    builder: (context, value, _) => TextField(
-                      controller: romajiController,
-                      textAlign: TextAlign.center,
-                      onChanged: (text) {
-                        value.inputUser = text;
-                      },
-                    ),
+                  const Divider(thickness: 2),
+                  ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Quiz(),
+                        ),
+                      );
+                    },
+                    title: const Text('Quiz'),
+                    subtitle: const Text('Quiz'),
+                    trailing: const Text('Quiz'),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Consumer<CompareProvider>(
-                    builder: (context, value, _) => Text(
-                      value.result,
-                      style: const TextStyle(fontSize: 100),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  // Text(
-                  //   result,
-                  //   style: const TextStyle(fontSize: 100),
-                  // ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
-                  Consumer<CompareProvider>(
-                    builder: (context, value, _) => Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            value.guessLetter = value.randomNewLetter();
-                          },
-                          child: const Text('Random'),
-                        )
-                      ],
-                    ),
-                  )
+                  const Divider(thickness: 2),
                 ],
               ),
             ),
