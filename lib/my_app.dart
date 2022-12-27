@@ -1,77 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:japaneseletterquiz/compare_provider.dart';
-import 'package:japaneseletterquiz/quiz.dart';
-import 'package:provider/provider.dart';
+import 'package:japaneseletterquiz/quiz_screen.dart';
+import 'package:japaneseletterquiz/second_route.dart';
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final romajiController = TextEditingController();
-  final hiraganaContr = TextEditingController();
-  String result = '';
-  String resultGuess = '';
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Kuis Huruf Jepang',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Japanese Letter'),
       ),
-      home: ChangeNotifierProvider<CompareProvider>(
-        create: (_) => CompareProvider(),
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            title: const Text('Kuis Huruf Jepang'),
-          ),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  const ListTile(
-                    title: Text('Hiragana'),
-                    subtitle: Text('Hiragana'),
-                    trailing: Text('Hiragana'),
-                  ),
-                  const Divider(thickness: 2),
-                  ListTile(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Quiz(),
-                        ),
-                      );
-                    },
-                    title: const Text('Quiz'),
-                    subtitle: const Text('Quiz'),
-                    trailing: const Text('Quiz'),
-                  ),
-                  const Divider(thickness: 2),
-                ],
-              ),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              child: const Text('Hiragana'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                );
+              },
             ),
-          ),
+            ElevatedButton(
+              child: const Text('Quiz'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuizScreen()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
