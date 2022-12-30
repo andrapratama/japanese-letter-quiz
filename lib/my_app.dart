@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:japaneseletterquiz/quiz_screen.dart';
-import 'package:japaneseletterquiz/second_route.dart';
+import 'package:japaneseletterquiz/hiragana_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                  MaterialPageRoute(
+                      builder: (context) => const HiraganaScreen()),
                 );
               },
             ),
