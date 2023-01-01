@@ -99,6 +99,35 @@ class HiraganaScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(kanaKit.toHiragana('ta')),
+                  Text(kanaKit.toHiragana('chi')),
+                  Text(kanaKit.toHiragana('tsu')),
+                  Text(kanaKit.toHiragana('te')),
+                  Text(kanaKit.toHiragana('to')),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Text('ta'),
+                  Text('chi'),
+                  Text('tsu'),
+                  Text('te'),
+                  Text('to'),
+                ],
+              ),
+            ),
           ],
         ),
       ),
