@@ -42,7 +42,38 @@ class CompareProvider extends ChangeNotifier {
   }
 }
 
-var list = ["a", "i", "u", "e", "o"];
+var list = [
+  "a",
+  "i",
+  "u",
+  "e",
+  "o",
+  "ka",
+  "ki",
+  "ku",
+  "ke",
+  "ko",
+  "sa",
+  "shi",
+  "su",
+  "se",
+  "so",
+  "ta",
+  "chi",
+  "tsu",
+  "te",
+  "to",
+  "na",
+  "ni",
+  "nu",
+  "ne",
+  "no",
+  "ha",
+  "hi",
+  "fu",
+  "he",
+  "ho"
+];
 
 // generates a new Random object
 final _random = Random();
